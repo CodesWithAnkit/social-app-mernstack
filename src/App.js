@@ -17,7 +17,7 @@ function App() {
       <main>
         <Switch>
           <Route path="/" exact component={Users} />
-          <Route path="/:userIs/places" exact>
+          <Route path="/:userId/places" exact>
             <UserPlaces />
           </Route>
           <Route path="/places" exact component={NewPlaces} />
