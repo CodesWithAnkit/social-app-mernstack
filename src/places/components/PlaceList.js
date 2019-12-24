@@ -1,19 +1,21 @@
-import React from "react";
-import Card from "../../shared/components/UIElemets/Card";
-import PlaceItem from "./PlaceItem";
-import "./PlaceList.css";
+import React from 'react';
+
+import Card from '../../shared/components/UIElements/Card';
+import PlaceItem from './PlaceItem';
+import './PlaceList.css';
 
 const PlaceList = props => {
   if (props.items.length === 0) {
     return (
       <div className="place-list center">
         <Card>
-          <h2>No place found, May Be create one</h2>
+          <h2>No places found. Maybe create one?</h2>
           <button>Share Place</button>
         </Card>
       </div>
     );
   }
+
   return (
     <ul className="place-list">
       {props.items.map(place => (
@@ -25,7 +27,7 @@ const PlaceList = props => {
           description={place.description}
           address={place.address}
           creatorId={place.creator}
-          coordinate={place.location}
+          coordinates={place.location}
         />
       ))}
     </ul>

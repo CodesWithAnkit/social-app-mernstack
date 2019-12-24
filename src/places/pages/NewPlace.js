@@ -1,11 +1,12 @@
 import React, { useCallback, useReducer } from 'react';
-import Input from '../../shared/components/FormELement/Input/Input';
-import Button from '../../shared/components/FormELement/Button/Button';
+
+import Input from '../../shared/components/FormElements/Input';
+import Button from '../../shared/components/FormElements/Button';
 import {
   VALIDATOR_REQUIRE,
   VALIDATOR_MINLENGTH
-} from '../../shared/utils/validators';
-import './NewPlace.css';
+} from '../../shared/util/validators';
+import './PlaceForm.css';
 
 const formReducer = (state, action) => {
   switch (action.type) {
@@ -31,12 +32,21 @@ const formReducer = (state, action) => {
   }
 };
 
-const NewPlaces = () => {
+const NewPlace = () => {
   const [formState, dispatch] = useReducer(formReducer, {
-    //intial state
     inputs: {
-      title: { value: '', isValid: false },
-      description: { value: '', isValid: false }
+      title: {
+        value: '',
+        isValid: false
+      },
+      description: {
+        value: '',
+        isValid: false
+      },
+      address: {
+        value: '',
+        isValid: false
+      }
     },
     isValid: false
   });
@@ -52,7 +62,7 @@ const NewPlaces = () => {
 
   const placeSubmitHandler = event => {
     event.preventDefault();
-    console.log(formState.inputs);
+    console.log(formState.inputs); // send this to the backend!
   };
 
   return (
@@ -63,7 +73,7 @@ const NewPlaces = () => {
         type="text"
         label="Title"
         validators={[VALIDATOR_REQUIRE()]}
-        errorText="Please enter a valid title"
+        errorText="Please enter a valid title."
         onInput={inputHandler}
       />
       <Input
@@ -71,7 +81,7 @@ const NewPlaces = () => {
         element="textarea"
         label="Description"
         validators={[VALIDATOR_MINLENGTH(5)]}
-        errorText="Please enter a valid Description (at least 5 characters"
+        errorText="Please enter a valid description (at least 5 characters)."
         onInput={inputHandler}
       />
       <Input
@@ -79,7 +89,7 @@ const NewPlaces = () => {
         element="input"
         label="Address"
         validators={[VALIDATOR_REQUIRE()]}
-        errorText="Please enter a valid Address"
+        errorText="Please enter a valid address."
         onInput={inputHandler}
       />
       <Button type="submit" disabled={!formState.isValid}>
@@ -89,4 +99,4 @@ const NewPlaces = () => {
   );
 };
 
-export default NewPlaces;
+export default NewPlace;

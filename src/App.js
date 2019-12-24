@@ -5,31 +5,36 @@ import {
   Redirect,
   Switch
 } from 'react-router-dom';
+
 import Users from './user/pages/Users';
-import NewPlaces from './places/pages/NewPlaces';
+import NewPlace from './places/pages/NewPlace';
 import UserPlaces from './places/pages/UserPlaces';
-import UpdatedPlace from './places/pages/UpdatePlace';
+import UpdatePlace from './places/pages/UpdatePlace';
 import MainNavigation from './shared/components/Navigation/MainNavigation';
 
-function App() {
+const App = () => {
   return (
     <Router>
       <MainNavigation />
       <main>
         <Switch>
-          <Route path="/" exact component={Users} />
+          <Route path="/" exact>
+            <Users />
+          </Route>
           <Route path="/:userId/places" exact>
             <UserPlaces />
           </Route>
-          <Route path="/places/new" exact component={NewPlaces} />
-          <Route path="places/:placeId">
-            <UpdatedPlace />
+          <Route path="/places/new" exact>
+            <NewPlace />
+          </Route>
+          <Route path="/places/:placeId">
+            <UpdatePlace />
           </Route>
           <Redirect to="/" />
         </Switch>
       </main>
     </Router>
   );
-}
+};
 
 export default App;

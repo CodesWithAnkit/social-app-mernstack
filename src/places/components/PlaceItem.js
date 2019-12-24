@@ -1,9 +1,10 @@
-import React, { useState, Fragment } from "react";
-import Card from "../../shared/components/UIElemets/Card";
-import Button from "../../shared/components/FormELement/Button/Button";
-import Model from "../../shared/components/UIElemets/Modal";
-import Map from "../../shared/components/UIElemets/Map";
-import "./PlaceItem.css";
+import React, { useState } from 'react';
+
+import Card from '../../shared/components/UIElements/Card';
+import Button from '../../shared/components/FormElements/Button';
+import Modal from '../../shared/components/UIElements/Modal';
+import Map from '../../shared/components/UIElements/Map';
+import './PlaceItem.css';
 
 const PlaceItem = props => {
   const [showMap, setShowMap] = useState(false);
@@ -13,10 +14,10 @@ const PlaceItem = props => {
   const closeMapHandler = () => setShowMap(false);
 
   return (
-    <Fragment>
-      <Model
+    <React.Fragment>
+      <Modal
         show={showMap}
-        onCancle={closeMapHandler}
+        onCancel={closeMapHandler}
         header={props.address}
         contentClass="place-item__modal-content"
         footerClass="place-item__modal-actions"
@@ -25,8 +26,8 @@ const PlaceItem = props => {
         <div className="map-container">
           <Map center={props.coordinates} zoom={16} />
         </div>
-      </Model>
-      <li className="list-item">
+      </Modal>
+      <li className="place-item">
         <Card className="place-item__content">
           <div className="place-item__image">
             <img src={props.image} alt={props.title} />
@@ -37,15 +38,13 @@ const PlaceItem = props => {
             <p>{props.description}</p>
           </div>
           <div className="place-item__actions">
-            <Button inverse onClick={openMapHandler}>
-              VIEW ON MAP
-            </Button>
+            <Button inverse onClick={openMapHandler}>VIEW ON MAP</Button>
             <Button to={`/places/${props.id}`}>EDIT</Button>
             <Button danger>DELETE</Button>
           </div>
         </Card>
       </li>
-    </Fragment>
+    </React.Fragment>
   );
 };
 
