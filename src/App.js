@@ -30,6 +30,7 @@ const App = () => {
   if (isLoggedIn) {
     routes = (
       <Switch>
+        {/* if LoggedIn */}
         <Route path="/" exact>
           <Users />
         </Route>
@@ -48,6 +49,7 @@ const App = () => {
   } else {
     routes = (
       <Switch>
+        {/* After LogOut */}
         <Route path="/" exact>
           <Users />
         </Route>
